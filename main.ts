@@ -59,7 +59,7 @@ game.onUpdateInterval(3500, function () {
 `, Math.randomRange(-50, 50), Math.randomRange(-50, 50))
     Banana.setKind(SpriteKind.Food)
 })
-game.onUpdateInterval(550, function () {
+game.onUpdateInterval(1000, function () {
     Coconut = sprites.createProjectileFromSide(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
