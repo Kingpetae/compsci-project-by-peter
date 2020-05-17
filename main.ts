@@ -1,8 +1,19 @@
+namespace SpriteKind {
+    export const Banana = SpriteKind.create()
+}
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
+    music.powerUp.play()
+    info.changeScoreBy(-10)
+})
+info.onCountdownEnd(function () {
+    effects.confetti.startScreenEffect()
+})
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Player, function (sprite, otherSprite) {
     mySprite.startEffect(effects.fire, 500)
     info.changeScoreBy(10)
 })
-let projectile: Sprite = null
+let Coconut: Sprite = null
+let Banana: Sprite = null
 let mySprite: Sprite = null
 scene.setBackgroundColor(4)
 mySprite = sprites.create(img`
@@ -26,8 +37,29 @@ c c c c c d d d e e f c . f e f
 controller.moveSprite(mySprite)
 mySprite.setFlag(SpriteFlag.StayInScreen, true)
 info.startCountdown(240)
-game.onUpdateInterval(950, function () {
-    projectile = sprites.createProjectileFromSide(img`
+game.onUpdateInterval(3500, function () {
+    Banana = sprites.createProjectileFromSide(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . f f f . . 
+. . . . . . . . . . . f f f . . 
+. . . . . . . . . . . 5 5 5 . . 
+. . . . . . . . . . . 5 5 5 . . 
+. . . . . . . . . . . 5 5 5 . . 
+. . . . . . . . . . . 5 5 5 . . 
+. . . . . . . . . . . 5 5 5 . . 
+. . . . . . . . . . 5 5 5 5 . . 
+. . . . . . . . . 5 5 5 5 . . . 
+. . . . . . . 5 5 5 5 5 5 . . . 
+. . . . . 5 5 5 5 5 5 5 . . . . 
+. . . . . 5 5 5 5 5 5 . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`, Math.randomRange(-50, 50), Math.randomRange(-50, 50))
+    Banana.setKind(SpriteKind.Food)
+})
+game.onUpdateInterval(550, function () {
+    Coconut = sprites.createProjectileFromSide(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
