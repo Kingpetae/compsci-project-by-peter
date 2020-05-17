@@ -4,12 +4,13 @@ namespace SpriteKind {
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
     music.powerUp.play()
     info.changeScoreBy(-10)
+    mySprite.startEffect(effects.fountain, 200)
 })
 info.onCountdownEnd(function () {
     effects.confetti.startScreenEffect()
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Player, function (sprite, otherSprite) {
-    mySprite.startEffect(effects.fire, 500)
+    mySprite.startEffect(effects.fire, 200)
     info.changeScoreBy(10)
 })
 let Coconut: Sprite = null
