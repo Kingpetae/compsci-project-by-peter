@@ -1,5 +1,11 @@
+sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Player, function (sprite, otherSprite) {
+    mySprite.startEffect(effects.fire, 500)
+    info.changeScoreBy(10)
+})
+let projectile: Sprite = null
+let mySprite: Sprite = null
 scene.setBackgroundColor(4)
-let mySprite = sprites.create(img`
+mySprite = sprites.create(img`
 . . . . f f f f f . . . . . . . 
 . . . f e e e e e f . . . . . . 
 . . f d d d d e e e f . . . . . 
@@ -18,3 +24,25 @@ c c c c c d d d e e f c . f e f
 . . . . f f f f f f f f f . . . 
 `, SpriteKind.Player)
 controller.moveSprite(mySprite)
+mySprite.setFlag(SpriteFlag.StayInScreen, true)
+info.startCountdown(240)
+game.onUpdateInterval(950, function () {
+    projectile = sprites.createProjectileFromSide(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . e e e e e e e . . . . 
+. . . . e e e e e e e e e . . . 
+. . . . e e e e f e e e e . . . 
+. . . e e e e e e e f e e . . . 
+. . . e e e e e f e e e e . . . 
+. . . e e e e e e e e e e . . . 
+. . . e e e e e e e e e e . . . 
+. . . e e e e e e e e e e . . . 
+. . . e e e e e e e e e e . . . 
+. . . e e e e e e e e e . . . . 
+. . . e e e e e e e e . . . . . 
+. . . . e e e e e . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`, Math.randomRange(-50, 50), Math.randomRange(-50, 50))
+})
